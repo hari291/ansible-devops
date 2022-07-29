@@ -17,6 +17,7 @@
   assert:
     that: cluster_type is in supported_cluster_types
     fail_msg: "cluster_type '{{ cluster_type }}' property is not supported by this role"
+  when: cluster_type != "powervs"
 
 - name: "Fail if no OCP version is provided"
   assert:

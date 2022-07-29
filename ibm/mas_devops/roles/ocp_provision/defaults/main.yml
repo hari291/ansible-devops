@@ -24,6 +24,7 @@ supported_cluster_types:
   - fyre
   - roks
   - rosa
+  - powervs
 
 # ROKS defaults
 ibmcloud_apikey: "{{ lookup('env', 'IBMCLOUD_APIKEY') }}"
@@ -52,3 +53,17 @@ fyre_worker_cpu: "{{ lookup('env', 'FYRE_WORKER_CPU') | default('64', true) }}"
 rosa_token: "{{ lookup('env', 'ROSA_TOKEN') }}"
 rosa_cluster_admin_password: "{{ lookup('env', 'ROSA_CLUSTER_ADMIN_PASSWORD') }}"
 rosa_compute_nodes: "{{ lookup('env', 'ROSA_COMPUTE_NODES') | default('3', true) }}"
+
+# IBM Cloud ppc64le 
+rhel_subs_password: "{{ lookup('env', 'RHEL_SUBS_PASSWORD') }}"
+release_ver: "{{ lookup('env', 'RELEASE_VER') | default('4.10', true) }}"
+terraform_action: "{{ lookup('env', 'ACTION' | default('create', true) }}"
+# Variables to pass the script openshift-install-powervs
+var_file: "{{ lookup('env', 'VAR_FILE' | default('var.tfvars', true) }}"
+flavor: "{{ lookup('env', 'FLAVOR' | default('', true) }}"
+force_destroy: "{{ lookup('env', 'FOREC_DESTROY' | default('0', true) }}"
+ignore_os_checks: "{{ lookup('env', 'IGNORE_OS' | default('0', true) }}"
+verbose: "{{ lookup('venvars', 'TF_TRACE' | default('0', true) }}"
+all_images: "{{ lookup('env', 'DISPLAY_ALL_IMAGES' | default('0', true) }}"
+trace: "{{ lookup('env', 'TRACE' | default('0', true) }}"
+version: "{{ lookup('env', 'VERSION' | default('v1.5.0', true) }}"
