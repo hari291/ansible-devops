@@ -1,0 +1,20 @@
+ibmcloud_region = "{{ vars.ibmcloud_region }}"
+ibmcloud_zone = "{{ vars.ibmcloud_zone }}"
+service_instance_id = "{{ vars.service_instance_id }}"
+rhel_image_name =  "{{ vars.rhel_image_name }}"
+rhcos_image_name =  "{{ vars.rhcos_image_name }}"
+network_name =  "{{ vars.network_name }}"
+openshift_install_tarball =  "{{ vars.openshift_install_tarball }}"
+openshift_client_tarball =  "{{ vars.openshift_client_tarball }}"
+cluster_id_prefix = "{{ vars.cluster_id_prefix }}"
+cluster_id = "{{ vars.cluster_id_prefix }}"
+cluster_domain = "{{ vars.cluster_id_prefix }}"
+storage_type = "{{ vars.cluster_id_prefix }}"
+volume_size = "{{ vars.volume_size }}"
+bastion = {memory = "{{ vars.bastian.memory }}", processors = "{{ vars.bastian.processors }}", "count" = "{{ vars.bastian.count }}"}
+bootstrap = {memory = "{{ vars.bootstrap.memory }}", processors = "{{ vars.bootstrap.processors }}", "count" = "{{ vars.bootstrap.count }}"}
+master = {memory = "{{ vars.master.memory }}", processors = "{{ vars.master.processors }}", "count" = "{{ vars.master.count }}"}
+worker = {memory = "{{ vars.worker.memory }}", processors = "{{ vars.worker.processors }}", "count" = "{{ vars.worker.count }}"}
+rhel_subscription_username = "{{ vars.rhel_subscription_username }}"
+rhel_subscription_password = "{{ vars.rhel_subscription_password }}"
+pull_secret_file = "{{ pull_secret_file }}"

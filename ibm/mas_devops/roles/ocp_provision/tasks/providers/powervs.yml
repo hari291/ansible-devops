@@ -7,24 +7,19 @@
 - name: Download the script on your system and change the permission to execute
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/ocp-power-automation/openshift-install-power/devel/openshift-install-powervs
-    dest: ocp-install-dir/openshift-install-power
+    dest: ocp-install-dir/openshift-install-powervs
     mode: '0755'
     force: yes
+
+- name: Template a file to /etc/file.conf
+  ansible.builtin.template:
+    src: "{{ var_file }}"
+    dest: ocp-install-dir/variable.tfvars
+    mode: '0755'
 
 - name: Install all the required packages/binaries in current directory.
   ansible.builtin.shell: ocp-install-dir/openshift-install-powervs setup
 
-- name: Interactive way to populate the variables file
-  ansible.builtin.shell: ocp-install-dir/openshift-install-powervs variables -{{ all_images }}
+# - name: Interactive way to populate the variables file
+#   ansible.builtin.shell: ocp-install-dir/openshift-install-powervs create -var-file "{{ var_file }}" -"{{ verbose }}"
 
-- name: Create an OpenShift cluster
-  # Usage: openshift-install-powervs [command] [<args> [<value>]]
-  ansible.builtin.shell: >
-    - ocp-install-dir/openshift-install-powervs {{ terraform_action }} \
-        -var-file {{ var_file }} \
-        -{{ flavor }} \
-        -{{ force_destroy }} \
-        -{{ ignore_os_checks }} \
-        -{{ verbose }} \
-        -{{ trace }} \
-        -{{ version }}
