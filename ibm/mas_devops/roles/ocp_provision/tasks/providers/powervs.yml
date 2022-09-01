@@ -11,7 +11,7 @@
     mode: '0755'
     force: yes
 
-- name: Template a file to /etc/file.conf
+- name: Template a file to ocp-install-dir/variable.tfvars
   ansible.builtin.template:
     src: "{{ var_file }}"
     dest: ocp-install-dir/variable.tfvars
@@ -21,5 +21,4 @@
   ansible.builtin.shell: ocp-install-dir/openshift-install-powervs setup
 
 # - name: Interactive way to populate the variables file
-#   ansible.builtin.shell: ocp-install-dir/openshift-install-powervs create -var-file "{{ var_file }}" -"{{ verbose }}"
-
+#   ansible.builtin.shell: ocp-install-dir/openshift-install-powervs create -var-file ocp-install-dir/variable.tfvars -"{{ verbose }}"

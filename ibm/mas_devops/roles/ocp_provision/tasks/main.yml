@@ -1,5 +1,5 @@
 ---
-# 1. Check for undefined properties that do not have a default
+# # 1. Check for undefined properties that do not have a default
 # -----------------------------------------------------------------------------
 - name: "Fail if cluster name & type is not provided"
   assert:
@@ -13,17 +13,16 @@
   set_fact:
     cluster_type: "fyre"
 
-# - name: "Fail if cluster type is not supported"
-#   assert:
-#     that: cluster_type is in supported_cluster_types
-#     fail_msg: "cluster_type '{{ cluster_type }}' property is not supported by this role"
-#   when: cluster_type != "powervs"
+- name: "Fail if cluster type is not supported"
+  assert:
+    that: cluster_type is in supported_cluster_types
+    fail_msg: "cluster_type '{{ cluster_type }}' property is not supported by this role"
 
 - name: "Fail if no OCP version is provided"
   assert:
     that: ocp_version is defined and ocp_version != ""
     fail_msg: "ocp_version is required"
 
-# 2. Run the provision
-# -----------------------------------------------------------------------------
+2. Run the provision
+#-----------------------------------------------------------------------------
 - include_tasks: "tasks/providers/{{ cluster_type }}.yml"
