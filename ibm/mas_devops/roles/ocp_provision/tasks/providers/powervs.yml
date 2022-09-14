@@ -18,7 +18,7 @@
     mode: '0755'
 
 - name: Install all the required packages/binaries in current directory.
-  ansible.builtin.shell: ocp-install-dir/openshift-install-powervs setup
+  ansible.builtin.shell: "sh ocp-install-dir/openshift-install-powervs setup"
 
 # - name: Interactive way to populate the variables file
 #   ansible.builtin.shell: ocp-install-dir/openshift-install-powervs create -var-file ocp-install-dir/variable.tfvars -"{{ verbose }}"
